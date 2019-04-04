@@ -39,4 +39,15 @@ class Item {
                 return null;
             })
     }
+    static add(itemData){
+        return db.one(`
+        insert into items
+            (name, description, price, picture)
+        values
+        ($1, $2, $3, $4)`,[itemData.name, itemData.description, itemData.price, itemData.picture])
+        .then((data) =>{
+            console.log(data);
+            return data.id;
+        })
+    }
 }
