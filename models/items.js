@@ -59,7 +59,8 @@ class Item {
             name='${this.name}',
             description='${this.description}',
             price='${this.price}',
-            picture='${this.picture}'`);
+            picture='${this.picture}'
+        where id=${this.id}`);
     }
 }
 module.exports = Item;
