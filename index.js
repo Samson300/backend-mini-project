@@ -4,7 +4,9 @@ const PORT = 3000;
 const freEbayRouter = require('./routes/freEbayRoutes');
 const app = express();
 
+app.use(express.urlencoded({extended:true}));
 app.use('/freEbay', freEbayRouter);
+
 
 
 app.listen(PORT, () => {

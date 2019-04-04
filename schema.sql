@@ -2,7 +2,7 @@ CREATE table items (
     id serial PRIMARY KEY,
     name VARCHAR (200),
     description VARCHAR(200),
-    price INTEGER,
+    price VARCHAR(100),
     picture VARCHAR(600)
 
 );
