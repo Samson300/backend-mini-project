@@ -50,5 +50,8 @@ class Item {
             return data.id;
         })
     }
+    static delete(id){
+        return db.result('delete from items where id=$1', [id]);
+    }
 }
 module.exports = Item;
