@@ -27,7 +27,7 @@ class Item {
         return db.one(`select * from items where id=${id}`)
             .then((itemData) =>{
                 const itemInstance = new Item(
-                    itemData.id,
+                        itemData.id,
                         itemData.name,
                         itemData.description,
                         itemData.price,
@@ -44,7 +44,7 @@ class Item {
         insert into items
             (name, description, price, picture)
         values
-        ($1, $2, $3, $4)`,[itemData.name, itemData.description, itemData.price, itemData.picture])
+            ($1, $2, $3, $4)`,[itemData.name, itemData.description, itemData.price, itemData.picture])
         .then((data) =>{
             console.log(data);
             return data.id;
