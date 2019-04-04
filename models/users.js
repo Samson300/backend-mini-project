@@ -50,6 +50,14 @@ class User {
                 return null;
             })
     }
+    setPassword(newPassword){
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(newPassword, salt);
+        this.password = hash;
+    }
+    checkPassword(aPassword){
+        return bcrypt.compareSync(aPassword, this.password);
+    }
 }
 
 module.exports = User;
