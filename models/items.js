@@ -23,4 +23,20 @@ class Item {
                 })
             })
     }
+    static getById(id) {
+        return db.one(`select * from items where id=${id}`)
+            .then((itemData) =>{
+                const itemInstance = new Item(
+                    itemData.id,
+                        itemData.name,
+                        itemData.description,
+                        itemData.price,
+                        itemData.picture
+                )
+                return itemInstance;
+            })
+            .catch(() => {
+                return null;
+            })
+    }
 }
