@@ -7,7 +7,7 @@ const pgp = require('pg-promise')({
 // next, define the connections options
 const options = {
     host: 'localhost',
-    database: 'freEbay'
+    database: 'freEbay-app'
 };
 
 // make a connection to the database specified by the options object
