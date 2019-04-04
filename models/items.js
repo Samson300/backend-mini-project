@@ -53,5 +53,13 @@ class Item {
     static delete(id){
         return db.result('delete from items where id=$1', [id]);
     }
+    save() {
+        return db.result(`
+        update items set
+            name='${this.name}',
+            description='${this.description}',
+            price='${this.price}',
+            picture='${this.picture}'`);
+    }
 }
 module.exports = Item;
