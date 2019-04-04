@@ -3,7 +3,7 @@ CREATE table items (
     name VARCHAR (200),
     description VARCHAR(200),
     price INTEGER,
-    picture VARCHAR(200)
+    picture VARCHAR(600)
 
 );
 
