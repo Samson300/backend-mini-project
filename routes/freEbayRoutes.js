@@ -2,24 +2,26 @@ const express = require('express');
 const Router = express.Router;
 
 const {
-    create,
-    retrieveAll,
+    addItem,
+    retrieveAllUsers,
+    retrieveAllItems,
     update,
-    deleteOne
+    deleteOneItem
 } = require('../controllers/crud');
 
 const freEbayRouter = Router();
 
 // GET
-freEbayRouter.get('/', retrieveAll);
+freEbayRouter.get('/user', retrieveAllUsers);
+freEbayRouter.get('/item', retrieveAllItems);
 
 // POST
-freEbayRouter.post('/', create);
+freEbayRouter.post('/item/add', addItem);
 
 // PUT
 freEbayRouter.put('/', update);
 
 // DELETE
-freEbayRouter.delete('/', deleteOne);
+freEbayRouter.delete('/item/delete/:id', deleteOneItem);
 
 module.exports = freEbayRouter;

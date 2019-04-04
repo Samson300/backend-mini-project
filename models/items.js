@@ -44,7 +44,8 @@ class Item {
         insert into items
             (name, description, price, picture)
         values
-            ($1, $2, $3, $4)`,[itemData.name, itemData.description, itemData.price, itemData.picture])
+            ($1, $2, $3, $4)
+            returning id`,[itemData.name, itemData.description, itemData.price, itemData.picture])
         .then((data) =>{
             console.log(data);
             return data.id;
