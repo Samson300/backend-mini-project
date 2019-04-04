@@ -1,10 +1,10 @@
 const express = require('express');
 const PORT = 3000;
 
-const thinkpadRouter = require('./routes/thinkpad');
+const freEbayRouter = require('./routes/freEbayRoutes');
 const app = express();
 
-app.use('/thinkpads', thinkpadRouter);
+app.use('/freEbay', freEbayRouter);
 
 
 app.listen(PORT, () => {

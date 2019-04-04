@@ -6,20 +6,20 @@ const {
     retrieveAll,
     update,
     deleteOne
-} = require('../controllers/thinkpad');
+} = require('../controllers/crud');
 
-const thinkpadRoutes = Router();
+const freEbayRouter = Router();
 
 // GET
-thinkpadRoutes.get('/', retrieveAll);
+freEbayRouter.get('/', retrieveAll);
 
 // POST
-thinkpadRoutes.post('/', create);
+freEbayRouter.post('/', create);
 
 // PUT
-thinkpadRoutes.put('/', update);
+freEbayRouter.put('/', update);
 
 // DELETE
-thinkpadRoutes.delete('/', deleteOne);
+freEbayRouter.delete('/', deleteOne);
 
-module.exports = thinkpadRoutes;
+module.exports = freEbayRouter;
