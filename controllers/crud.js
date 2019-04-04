@@ -1,20 +1,33 @@
+const User = require('../models/users');
+const Item = require('../models/items');
+
 
 function create(req, res) {
     res.json({ message: "You created"});
 }
-function retrieveAll(req, res) {
-    res.json({ message: "You retrieved all"});
+
+async function retrieveAllUsers(req, res) {
+    const allUsers = await User.getAll();
+    res.json(allUsers);
 }
+
+async function retrieveAllItems(req, res) {
+    const allItems = await Item.getAll();
+    res.json(allItems);
+}
+
 function update(req, res) {
     res.json({ message: "You updated"});
 }
+
 function deleteOne(req, res) {
     res.json({ message: "You deleted"});
 }
 
 module.exports = {
     create,
-    retrieveAll,
+    retrieveAllUsers,
+    retrieveAllItems,
     update,
     deleteOne
 };

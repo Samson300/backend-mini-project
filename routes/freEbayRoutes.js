@@ -3,7 +3,8 @@ const Router = express.Router;
 
 const {
     create,
-    retrieveAll,
+    retrieveAllUsers,
+    retrieveAllItems,
     update,
     deleteOne
 } = require('../controllers/crud');
@@ -11,7 +12,8 @@ const {
 const freEbayRouter = Router();
 
 // GET
-freEbayRouter.get('/', retrieveAll);
+freEbayRouter.get('/user', retrieveAllUsers);
+freEbayRouter.get('/item', retrieveAllItems);
 
 // POST
 freEbayRouter.post('/', create);
