@@ -2,8 +2,13 @@ const User = require('../models/users');
 const Item = require('../models/items');
 
 
+async function addUser(req, res) {
+    const addUser = await User.add(req.body);
+    res.json(`The added user was given the id ${addUser}!`);
+}
+
 async function addItem(req, res) {
-    const addItem = await Item.add(req.body)
+    const addItem = await Item.add(req.body);
     res.json(`The added item was given id ${addItem}!`);
 }
 
@@ -28,6 +33,7 @@ async function deleteOneItem(req, res) {
 }
 
 module.exports = {
+    addUser,
     addItem,
     retrieveAllUsers,
     retrieveAllItems,
