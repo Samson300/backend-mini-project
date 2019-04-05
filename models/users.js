@@ -58,6 +58,7 @@ class User {
     checkPassword(aPassword){
         return bcrypt.compareSync(aPassword, this.password);
     }
+
     static getByEmail(email) {
         return db.one(`select * from users where email=$1`, [email])
                 .then(userData => {
@@ -70,6 +71,20 @@ class User {
                     return aUser;
                 })
     }
+
+    static add(userData){
+        return db.one(`
+        insert into users
+            (username, password, first_name, last_name, phone, email)
+        values
+            ($1, $2, $3, $4, $5, $6)
+            returning id`,[userData.username, userData.password, userData.first_name, userData.last_name, userData.phone, userData.email])
+        .then((data) =>{
+            console.log(data);
+            return data.id;
+        })
+}
+
 }
 
 module.exports = User;

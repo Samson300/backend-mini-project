@@ -10,12 +10,6 @@ app.use(session({
     secret: 'asdfghjkl'
 }));
 
-app.use(express.urlencoded({ extended: true }));
-
-// Router
-const freEbayRouter = require('./routes/freEbayRoutes');
-app.use('/freEbay', freEbayRouter);
-
 // ES6 Templates
 const es6Renderer = require('express-es6-template-engine');
 app.set('views', './views'); 
@@ -26,9 +20,15 @@ app.set('view engine', 'html');
 const User = require('./models/users');
 const Item = require('./models/items');
 
+// Router
+app.use(express.urlencoded({ extended: true })); // This must be above the router code, or else it'll fail.
+
+const freEbayRouter = require('./routes/freEbayRoutes');
+app.use('/freEbay', freEbayRouter);
+
 
 app.get('/freEbay', (req, res) => {
-    res.redirect('/login')
+    res.redirect('/logine')
 })
 
 app.get('/login', (req, res) => {
