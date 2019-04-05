@@ -35,6 +35,10 @@ app.get('/login', (req, res) => {
     res.render('login-form')
 })
 
+app.get('/store', (req, res) => {
+    res.render('store')
+})
+
 // Listen on our Port
 app.listen(PORT, () => {
     console.log(`Running on Port: ${PORT}!`);
