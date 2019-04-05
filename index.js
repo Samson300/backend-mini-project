@@ -36,8 +36,6 @@ app.get('/login', (req, res) => {
     });
 });
 app.post('/login', async (req, res) => {
-    console.log(req.body.email);
-    console.log(req.body.password);
     // get the users info by using the getByEmail function in users.js
     const theUser = await User.getByEmail(req.body.email);
     // check if users entered password is correct with checkPassword in users.js

@@ -50,24 +50,37 @@ class User {
                 return null;
             })
     }
-    setPassword(newPassword){
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(newPassword, salt);
-        this.password = hash;
-    }
+    // setPassword(newPassword){
+    //     const salt = bcrypt.genSaltSync(10);
+    //     const hash = bcrypt.hashSync(newPassword, salt);
+    //     this.password = hash;
+    // }
     checkPassword(aPassword){
-        return bcrypt.compareSync(aPassword, this.password);
+        if(aPassword === this.password){
+        return true;
+        } else {
+            return false;
+        }
+    //     const salt = bcrypt.genSaltSync(10);
+    //     const hash = bcrypt.hashSync(this.password, salt);
+    //     console.log("this.password",this.password);
+
+    // console.log("apassword", aPassword);
+    //     const passwordHash = bcrypt.hashSync(aPassword, salt)
+    //     return bcrypt.compareSync(passwordHash, hash);
     }
 
     static getByEmail(email) {
         return db.one(`select * from users where email=$1`, [email])
                 .then(userData => {
                     const aUser = new User(
-                        userData.id, 
-                        userData.first_name, 
-                        userData.last_name, 
-                        userData.email, 
-                        userData.password);
+                        userData.id,
+                        userData.username,
+                        userData.password,
+                        userData.first_name,
+                        userData.last_name,
+                        userData.phone,
+                        userData.email);
                     return aUser;
                 })
     }
