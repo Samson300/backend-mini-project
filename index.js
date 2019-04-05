@@ -32,8 +32,36 @@ app.get('/freEbay', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    res.render('login-form')
-})
+    res.render('login-form', {
+        locals: {
+            email: '',
+
+        }
+    });
+});
+app.post('/login', async (req, res) => {
+    // get the users info by using the getByEmail function in users.js
+    const theUser = await User.getByEmail(req.body.email);
+    // check if users entered password is correct with checkPassword in users.js
+    const correctPassword = theUser.checkPassword(req.body.password);
+    // if the entered password is correct redirect to the store
+    if(correctPassword){
+        // save the users id in session storage
+        req.session.user = User.id;
+        req.session.save(() => {
+            // after users info password is checked redirect them the the store
+            res.redirect('/store');
+        });
+        // if the password they entered is not correct, send them the login for again
+    } else {
+        res.render('login-form', {
+            locals: {
+                email: req.body.email,
+                message: 'Incorrect password, Try again.'
+            }
+        });
+    }
+});
 
 app.get('/store', (req, res) => {
     res.render('store')
