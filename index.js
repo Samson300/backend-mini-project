@@ -33,13 +33,11 @@ app.get('/freEbay', (req, res) => {
 
 app.get('/login', (req, res) => {
     res.render('login-form', {
-        locals: {
-            email: '',
-
-        }
     });
 });
 app.post('/login', async (req, res) => {
+    console.log(req.body.email);
+    console.log(req.body.password);
     // get the users info by using the getByEmail function in users.js
     const theUser = await User.getByEmail(req.body.email);
     // check if users entered password is correct with checkPassword in users.js
@@ -63,7 +61,8 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.get('/store', (req, res) => {
+app.get('/store', async (req, res) => {
+    const allItems = await Item.getAll();
     res.render('store')
 })
 
