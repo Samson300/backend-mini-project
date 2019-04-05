@@ -10,6 +10,8 @@ app.use(session({
     secret: 'asdfghjkl'
 }));
 
+app.use(express.urlencoded({ extended: true }));
+
 // Router
 const freEbayRouter = require('./routes/freEbayRoutes');
 app.use('/freEbay', freEbayRouter);
@@ -24,8 +26,6 @@ app.set('view engine', 'html');
 const User = require('./models/users');
 const Item = require('./models/items');
 
-
-app.use(express.urlencoded({ extended: true }));
 
 app.get('/freEbay', (req, res) => {
     res.redirect('/login')
@@ -60,7 +60,10 @@ app.post('/login', async (req, res) => {
         });
     }
 });
-
+app.get('/users/:id', async (req, res) => {
+    const theUser = await User.getById(id)
+    res.json(theUser)
+})
 app.get('/store', async (req, res) => {
     const allItems = await Item.getAll();
     res.render('store')
