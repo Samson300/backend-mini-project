@@ -11,7 +11,6 @@ app.use(session({
 }));
 
 
-
 // ES6 Templates
 const es6Renderer = require('express-es6-template-engine');
 app.set('views', './views'); 
@@ -23,14 +22,14 @@ const User = require('./models/users');
 const Item = require('./models/items');
 
 
-app.use(express.urlencoded({ extended: true }));
-
 // Router
+app.use(express.urlencoded({ extended: true })); // This must be above the router code, or else it'll fail.
+
 const freEbayRouter = require('./routes/freEbayRoutes');
 app.use('/freEbay', freEbayRouter);
 
 app.get('/freEbay', (req, res) => {
-    res.redirect('/login')
+    res.redirect('/logine')
 })
 
 app.get('/login', (req, res) => {
