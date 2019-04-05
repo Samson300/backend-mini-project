@@ -58,6 +58,20 @@ class User {
     checkPassword(aPassword){
         return bcrypt.compareSync(aPassword, this.password);
     }
+
+    static getByEmail(email) {
+        return db.one(`select * from users where email=$1`, [email])
+                .then(userData => {
+                    const aUser = new User(
+                        userData.id, 
+                        userData.first_name, 
+                        userData.last_name, 
+                        userData.email, 
+                        userData.password);
+                    return aUser;
+                })
+    }
+
     static add(userData){
         return db.one(`
         insert into users
@@ -70,6 +84,7 @@ class User {
             return data.id;
         })
 }
+
 }
 
 module.exports = User;
