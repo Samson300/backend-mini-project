@@ -6,8 +6,8 @@ const pgp = require('pg-promise')({
   });
 // next, define the connections options
 const options = {
-    host: 'localhost',
-    database: 'freEbay-app'
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME
 };
 
 // make a connection to the database specified by the options object
